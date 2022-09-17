@@ -1,10 +1,11 @@
 ---
 title: "p8105_hw1_af3341"
+author: Alana Ferris
 output: github_document
 date: "2022-09-16"
 ---
 
-## Problem 1
+# Problem 1
 
 ```{r load data}
 
@@ -18,7 +19,7 @@ library(tidyverse)
 
 ```
 
-_Description_:
+## Dataset Description:
 The penguins dataset contains `r nrow(penguins)` observations of penguins from the species Adelie, Gentoo, and Chinstrap. Some of the `r ncol(penguins)` variables include the  islands the penguins are from (Biscoe, Dream, Torgersen), as well as different physiological measurements. For example, the flipper length was measured and the mean length was found to be `r round(mean(pull(penguins, flipper_length_mm), na.rm = TRUE))` mm.
 
 ```{r scatterplot, echo = FALSE}
@@ -35,3 +36,32 @@ ggsave("hw1_penguinsscatterplot.jpeg")
 
 ```
 
+# Problem 2
+
+## New Data Frame Attempt
+```{r data frame}
+
+hw1_df = 
+  hw1_df = tibble(
+  norm_samp = rnorm(10),
+  norm_samp_pos = norm_samp > 0,
+  var_char = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J"),
+    var_factor = factor(c("male", "female", "nonbinary", "male", "male", "nonbinary", "male", "male", "female", "nonbinary")),
+  )
+
+x <- c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
+vectorLength = length(x)
+cat("Length of vector x is :", vectorLength)
+
+y <- c("male", "female", "nonbinary", "male", "male", "nonbinary", "male", "male", "female", "nonbinary")
+vectorLength = length(y)
+cat("Length of vector y is :", vectorLength)
+
+```
+
+I created a data frame with:
+
+* A random sample size of 10 from a standard normal distribution with `rnorm`
+* A logical vector indicating whether elements of the sample are greater than 0 with `norm_samp_pos`
+* A character vector of length 10 with `var_char`
+* A factor vector of length 10, with 3 different factor “levels” with `var_factor`
