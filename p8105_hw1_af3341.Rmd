@@ -65,3 +65,58 @@ I created a data frame with:
 * A logical vector indicating whether elements of the sample are greater than 0 with `norm_samp_pos`
 * A character vector of length 10 with `var_char`
 * A factor vector of length 10, with 3 different factor “levels” with `var_factor`
+
+## Taking the Mean of Each Variable
+
+### Mean of norm_samp
+```{r mean attempt of norm_samp}
+
+mean(pull(hw1_df, norm_samp))
+
+```
+
+### Mean of norm_samp_pos
+```{r mean attempt of norm_samp_pos}
+
+mean(pull(hw1_df, norm_samp_pos))
+
+```
+
+### Mean of var_char
+```{r mean attempt of var_char}
+
+mean(pull(hw1_df, var_char))
+
+```
+
+### Mean of var_factor
+```{r mean attempt of var_factor}
+
+mean(pull(hw1_df, var_factor))
+
+```
+
+_Outcome_:
+I was able to take the mean of variables `norm_samp`, but not of `var_char` or `var_factor` because they are not numeric or logical. Surprisingly, I was also able to take the mean of `norm_samp_pos`, a logical variable, even though it is not numeric.
+
+## Applying as.numeric
+
+```{r as.numeric, eval = FALSE}
+
+var_char = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
+V <- factor(var_char)
+as.numeric(V)
+
+var_factor = factor(c("male", "female", "nonbinary", "male", "male", "nonbinary", "male", "male", "female", "nonbinary"))
+as.numeric (var_factor)
+
+norm_samp = rnorm(10)
+norm_samp_pos = norm_samp > 0
+as.numeric(norm_samp_pos)
+
+```
+
+_Outcome_: In order to convert the character variable into a numeric variable via `as.numeric`, I first had to convert the character variable into a factor variable. This is because character variables can have an infinite number of responses whereas factor variables are nominal, meaning the response options are predefined as a number of levels. Factor variables have a different number of "levels", AKA number of responses, depending on the dataset. These levels can then correspond to numeric outputs once the `as.numeric` function is applied. For example, the factor variable `var_factor` has three factor levels (male, female, nonbinary) which can correspond to the numeric values 1, 2, 3. Character variables thus need to be given a defined set of levels before they can be processed as numeric. 
+This also helps explain why we were able to take the mean of a logical but non-numeric variable, like `norm_samp_pos`, because it is a binary variable; the only options are 0 or 1 (true or false). Thus, you can immediately take the mean of a logical variable because they have inherent numeric value. Whereas factor and character variables first have to be explicitly converted into numeric values before a mean can be taken because they have more than 2 levels. 
+
+
